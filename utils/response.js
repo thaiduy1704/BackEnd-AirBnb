@@ -2,7 +2,7 @@
 const successCode = (res, data) => {
 
   let dSend = {
-    message: "Thành công",
+    message: "Successfull",
 
     data: data
   }
@@ -14,7 +14,7 @@ const successCode = (res, data) => {
 const errorCode = (res, data) => {
 
   let dSend = {
-    message: "Thất bại",
+    message: "ErrorCode",
     data: data
   }
   res.status(400).send(dSend);
@@ -24,7 +24,7 @@ const errorCode = (res, data) => {
 //500
 const failCode = (res) => {
   let dSend = {
-    message: "Lỗi hệ thống !"
+    message: "FailCode!"
   }
   res.status(500).send(dSend);
 
