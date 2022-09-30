@@ -1,8 +1,9 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
+import { rootRouter } from './routes/index.js'
 
-import userRouter from './routes/userRoutes.js'
+
 
 
 dotenv.config()
@@ -16,7 +17,7 @@ app.use(express.json());
 
 
 //Router
-app.use('/api/users', userRouter)
+app.use('/api', rootRouter)
 
 const start = async () => {
   app.listen(PORT, console.log(`Server is listening on ${PORT}`))
