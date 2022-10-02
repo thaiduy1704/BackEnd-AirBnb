@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import e from 'express'
+import express from 'express'
 
 
 const prisma = new PrismaClient()
@@ -9,7 +9,12 @@ import { successCode, failCode, errorCode } from '../utils/response.js'
 const getAllRooms = async (req, res) => {
   try {
     const data = await prisma.room.findMany()
-    successCode(res, data)
+    if (data) {
+
+      successCode(res, data)
+    } else {
+      errorCode(res, "No Room")
+    }
 
   } catch (error) {
     failCode(res)
@@ -21,7 +26,7 @@ const getRoomById = async (req, res) => {
     const { roomId } = req.params
     const data = await prisma.room.findFirst({
       where: {
-        id: roomId
+        id: Number(roomId)
       }
     })
     if (data) {
@@ -38,13 +43,11 @@ const getRoomById = async (req, res) => {
 
 const getRoomByLocationId = async (req, res) => {
   try {
-    const { location_id } = req.params
+    const { locationId } = req.params
+
     const data = await prisma.room.findMany({
       where: {
-        locationId: location_id
-      },
-      include: {
-        locationId: true
+        locationId: Number(locationId)
       }
     })
     if (data) {
@@ -58,5 +61,39 @@ const getRoomByLocationId = async (req, res) => {
 
   }
 }
+const createRoom = async (req, res) => {
+  try {
+    let { name, numberOfGuests, bedroom, bed, bathroom, description, washer, iron, television, airConditioner, wifi, kitchen, garage, pool, image, price, locationId } = req.body
+    let data = {
+      name, numberOfGuests, bedroom, bed, bathroom, description, washer, iron, television, airConditioner, wifi, kitchen, garage, pool, image, price, locationId
+    }
+    let createData = await prisma.room.create({
+      data
+    })
+    if (createData) {
 
-export { getAllRooms, getRoomById, getRoomByLocationId }
+      successCode(res, data)
+    } else {
+      errorCode(res, "No Room")
+    }
+  } catch (error) {
+    failCode(res)
+  }
+}
+
+const deleteRoom = async (req, res) => {
+  try {
+    let { roomId } = req.params
+    await prisma.room.delete({
+      where: {
+        id: Number(roomId)
+      }
+    })
+    res.send("Succes Delete Room")
+
+  } catch (error) {
+    failCode(res)
+  }
+}
+
+export { getAllRooms, getRoomById, getRoomByLocationId, createRoom, deleteRoom }
