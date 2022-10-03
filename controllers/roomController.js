@@ -80,6 +80,32 @@ const createRoom = async (req, res) => {
     failCode(res)
   }
 }
+const updateRoom = async (req, res) => {
+  try {
+    const { roomId } = req.params
+
+    let { name, numberOfGuests, bedroom, bed, bathroom, description, washer, iron, television, airConditioner, wifi, kitchen, garage, pool, image, price, locationId } = req.body
+    let data = {
+      name, numberOfGuests, bedroom, bed, bathroom, description, washer, iron, television, airConditioner, wifi, kitchen, garage, pool, image, price, locationId
+    }
+    let updateData = await prisma.room.update({
+      data, where: {
+        id: Number(roomId)
+      }
+    })
+    if (data) {
+      successCode(res, updateData)
+
+    } else {
+      errorCode(res, "Updare Room Fail")
+    }
+
+  } catch (error) {
+    failCode
+
+  }
+}
+
 
 const deleteRoom = async (req, res) => {
   try {
@@ -96,4 +122,4 @@ const deleteRoom = async (req, res) => {
   }
 }
 
-export { getAllRooms, getRoomById, getRoomByLocationId, createRoom, deleteRoom }
+export { getAllRooms, getRoomById, getRoomByLocationId, createRoom, updateRoom, deleteRoom }
