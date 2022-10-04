@@ -3,10 +3,10 @@ import { getAllLocations, getLocationById, deleteLocation, createLocation, updat
 
 const locationRouter = express.Router()
 
-locationRouter.get('/getAllLocations', getAllLocations)
-locationRouter.get('/getLocationById/:locationId', getLocationById)
-locationRouter.post('/createLocation', createLocation)
-locationRouter.put('/updateLocation/:locationId', updateLocationById)
-locationRouter.delete('/deleteLocationById/:locationId', deleteLocation)
+locationRouter.get("", getAllLocations)
+locationRouter.get('/:locationId', getLocationById)
+locationRouter.post('', createLocation)
+locationRouter.put('/:locationId', updateLocationById)
+locationRouter.delete('/:locationId', deleteLocation)
 
 export { locationRouter } 
