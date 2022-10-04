@@ -7,11 +7,11 @@ import { userRouter } from './v1/userRouter.js'
 
 const rootRouter = express.Router();
 
-rootRouter.use("/user/v1/", userRouter)
-rootRouter.use("/booking/v1", bookingRouter)
-rootRouter.use("/comment/v1", commentRouter)
-rootRouter.use("/location/v1", locationRouter)
-rootRouter.use("/room/v1", roomRouter)
+rootRouter.use("/user", userRouter)
+rootRouter.use("/booking", bookingRouter)
+rootRouter.use("/comment", commentRouter)
+rootRouter.use("/location", locationRouter)
+rootRouter.use("/room", roomRouter)
 
 
 export { rootRouter }
