@@ -1,11 +1,12 @@
 import express from 'express'
-import { getAllBookings, getBookingById, createBooking, updateBooking, deleteBooking } from '../../controllers/bookingController.js'
+import { getAllBookings, getBookingById, createBooking, updateBooking, deleteBooking, getAllBookingByUserId } from '../../controllers/bookingController.js'
 
 const bookingRouter = express.Router()
 
-bookingRouter.get('/getAllBookings', getAllBookings)
-bookingRouter.get('/getBookingId/:bookingId', getBookingById)
-bookingRouter.post('/createBooking', createBooking)
-bookingRouter.put('/updateBooking/:bookingId', updateBooking)
-bookingRouter.delete('/deleteBooking/:bookingId', deleteBooking)
+bookingRouter.get('', getAllBookings)
+bookingRouter.get('/:bookingId', getBookingById)
+bookingRouter.get('/getAllBookingByUserId/:userId')
+bookingRouter.post('', createBooking)
+bookingRouter.put('/:bookingId', updateBooking)
+bookingRouter.delete('/:bookingId', deleteBooking)
 export { bookingRouter } 

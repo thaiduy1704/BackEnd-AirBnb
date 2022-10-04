@@ -3,11 +3,11 @@ import { getAllRooms, getRoomById, getRoomByLocationId, createRoom, deleteRoom, 
 
 const roomRouter = express.Router()
 
-roomRouter.get('/getAllRooms', getAllRooms)
-roomRouter.get('/getRoomById/:roomId', getRoomById)
+roomRouter.get('', getAllRooms)
+roomRouter.get('/:roomId', getRoomById)
 roomRouter.get('/getRoomByLocationId/:locationId', getRoomByLocationId)
-roomRouter.post('/createRoom', createRoom)
-roomRouter.put('/updateRoom/:roomId', updateRoom)
-roomRouter.delete('/deleteRoom/:roomId', deleteRoom)
+roomRouter.post('', createRoom)
+roomRouter.put('/:roomId', updateRoom)
+roomRouter.delete('/:roomId', deleteRoom)
 
 export { roomRouter } 

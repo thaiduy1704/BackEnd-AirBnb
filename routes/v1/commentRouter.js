@@ -3,11 +3,11 @@ import { getAllComments, getCommentByRoomId, createComment, updateComment, delet
 
 const commentRouter = express.Router()
 
-commentRouter.get('/getAllComments', getAllComments)
+commentRouter.get('', getAllComments)
 commentRouter.get('/getCommentByRoomId/:roomId', getCommentByRoomId)
-commentRouter.post('/createComment', createComment)
-commentRouter.put('/updateComment/:commentId', updateComment)
-commentRouter.delete('/deleteComment/:commentId', deleteComment)
+commentRouter.post('', createComment)
+commentRouter.put('/:commentId', updateComment)
+commentRouter.delete('/:commentId', deleteComment)
 
 
 export { commentRouter } 

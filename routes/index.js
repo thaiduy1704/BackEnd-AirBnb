@@ -7,7 +7,7 @@ import { userRouter } from './v1/userRouter.js'
 
 const rootRouter = express.Router();
 
-rootRouter.use("/user", userRouter)
+rootRouter.use("/users", userRouter)
 rootRouter.use("/booking", bookingRouter)
 rootRouter.use("/comment", commentRouter)
 rootRouter.use("/location", locationRouter)
