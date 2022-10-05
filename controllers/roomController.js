@@ -65,7 +65,7 @@ const createRoom = async (req, res) => {
   try {
     let { name, numberOfGuests, bedroom, bed, bathroom, description, washer, iron, television, airConditioner, wifi, kitchen, garage, pool, image, price, locationId } = req.body
     let data = {
-      name, numberOfGuests, bedroom, bed, bathroom, description, washer, iron, television, airConditioner, wifi, kitchen, garage, pool, image, price, locationId
+      name, numberOfGuests, bedroom, bed, bathroom, description, washer, iron, television, airConditioner, wifi, kitchen, garage, pool, image, price, locationId: 1
     }
     let createData = await prisma.room.create({
       data
@@ -77,6 +77,7 @@ const createRoom = async (req, res) => {
       errorCode(res, "No Room")
     }
   } catch (error) {
+    console.log(error);
     failCode(res)
   }
 }

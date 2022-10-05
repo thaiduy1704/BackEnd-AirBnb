@@ -36,7 +36,7 @@ const createComment = async (req, res) => {
   try {
     let { roomId, userId, date, description, ratting } = req.body
     let data = {
-      roomId, userId, date, description, ratting
+      roomId, userId, date: new Date(date), description, ratting
 
     }
     let createData = await prisma.comment.create({
@@ -48,6 +48,8 @@ const createComment = async (req, res) => {
       errorCode(res, "Don't create comment")
     }
   } catch (error) {
+    console.log(error
+    );
     failCode(res)
   }
 }
@@ -56,7 +58,7 @@ const updateComment = async (req, res) => {
     const { commentId } = req.params
     let { roomId, userId, date, description, ratting } = req.body
     let data = {
-      roomId, userId, date, description, ratting
+      roomId, userId, date: new Date(date), description, ratting
 
     }
     let updateData = await prisma.comment.update({
@@ -72,6 +74,7 @@ const updateComment = async (req, res) => {
     }
 
   } catch (error) {
+    console.log(error);
     failCode(res)
   }
 }

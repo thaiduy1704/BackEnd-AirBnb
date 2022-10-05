@@ -2,7 +2,7 @@
 const successCode = (res, data) => {
 
   let dSend = {
-    message: "Successfull",
+    message: "Successful",
 
     data: data
   }
