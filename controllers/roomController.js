@@ -41,6 +41,7 @@ const getRoomById = async (req, res) => {
   }
 }
 
+
 const getRoomByLocationId = async (req, res) => {
   try {
     const { locationId } = req.params
@@ -61,6 +62,32 @@ const getRoomByLocationId = async (req, res) => {
 
   }
 }
+const getRoomPagination = async (req, res) => {
+  try {
+    let { pageIndex, pageSize } = req.params
+
+    let page = Number(pageIndex)
+    if (page === 1) {
+      page = 0
+    }
+
+
+    const data = await prisma.room.findMany({
+      skip: page,
+      take: Number(pageSize)
+    })
+    if (data) {
+      successCode(res, data)
+    } else {
+      errorCode(res, "No Room")
+    }
+  } catch (error) {
+
+    failCode(res)
+  }
+}
+
+
 const createRoom = async (req, res) => {
   try {
     let { name, numberOfGuests, bedroom, bed, bathroom, description, washer, iron, television, airConditioner, wifi, kitchen, garage, pool, image, price, locationId } = req.body
@@ -98,7 +125,7 @@ const updateRoom = async (req, res) => {
       successCode(res, updateData)
 
     } else {
-      errorCode(res, "Updare Room Fail")
+      errorCode(res, "Update Room Fail")
     }
 
   } catch (error) {
@@ -116,11 +143,11 @@ const deleteRoom = async (req, res) => {
         id: Number(roomId)
       }
     })
-    res.send("Succes Delete Room")
+    res.send("Success Delete Room")
 
   } catch (error) {
     failCode(res)
   }
 }
 
-export { getAllRooms, getRoomById, getRoomByLocationId, createRoom, updateRoom, deleteRoom }
+export { getAllRooms, getRoomById, getRoomByLocationId, createRoom, updateRoom, deleteRoom, getRoomPagination }

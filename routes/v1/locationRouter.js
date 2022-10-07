@@ -7,9 +7,9 @@ const locationRouter = express.Router()
 const upload = multer({ storage })
 
 locationRouter.post("/upload/:id", upload.single("image"), uploadImageLocation)
-locationRouter.get("/getLocationPagination/:pageIndex/:pageSize", getLocationPagination)
 
 locationRouter.get("", getAllLocations)
+locationRouter.get("/getLocationPagination/pageIndex=:pageIndex/pageSize=:pageSize", getLocationPagination)
 locationRouter.get('/:locationId', getLocationById)
 locationRouter.post('', createLocation)
 locationRouter.put('/:locationId', updateLocationById)

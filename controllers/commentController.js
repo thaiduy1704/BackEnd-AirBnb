@@ -17,7 +17,7 @@ const getAllComments = async (req, res) => {
 const getCommentByRoomId = async (req, res) => {
   try {
     const { roomId } = req.params
-    const data = await prisma.comment.findFirst({
+    const data = await prisma.comment.findMany({
       where: {
         roomId: Number(roomId)
       }

@@ -57,6 +57,36 @@ const getUserById = async (req, res) => {
     failCode(res)
   }
 }
+
+const getUserPagination = async (req, res) => {
+  try {
+    let { pageIndex, pageSize } = req.params
+
+    let page = Number(pageIndex)
+    if (page === 1) {
+      page = 0
+    }
+
+
+    const data = await prisma.user.findMany({
+      skip: page,
+      take: Number(pageSize)
+    })
+    if (data) {
+      successCode(res, data)
+    } else {
+      errorCode(res, "No User")
+    }
+  } catch (error) {
+
+    failCode(res)
+  }
+}
+
+
+
+
+
 const createUser = async (req, res) => {
   try {
     let { name, password, email, phone, birthday, gender, role } = req.body
@@ -102,11 +132,11 @@ const deleteUser = async (req, res) => {
         id: Number(userId)
       }
     })
-    res.send("Delete User Succesfull")
+    res.send("Delete User Successfully")
   } catch (error) {
     failCode(res)
   }
 }
 
 
-export { getAllUsers, getUserById, getAllUserBySearchName, createUser, updateUserById, deleteUser }
+export { getAllUsers, getUserById, getAllUserBySearchName, createUser, updateUserById, deleteUser, getUserPagination }

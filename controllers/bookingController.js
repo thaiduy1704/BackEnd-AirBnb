@@ -53,7 +53,7 @@ const getAllBookingByUserId = async (req, res) => {
 const createBooking = async (req, res) => {
   try {
     let { roomId, checkIn, checkOut, numberOfGuests, userId } = req.body
-    let data = { roomId, checkIn, checkOut, numberOfGuests, userId }
+    let data = { roomId, checkIn: new Date(checkIn), checkOut: new Date(checkOut), numberOfGuests, userId }
     let createData = await prisma.booking.create({
       data
     })
@@ -72,7 +72,7 @@ const updateBooking = async (req, res) => {
   try {
     const { bookingId } = req.params
     let { roomId, checkIn, checkOut, numberOfGuests, userId } = req.body
-    let data = { roomId, checkIn, checkOut, numberOfGuests, userId }
+    let data = { roomId, checkIn: new Date(checkIn), checkOut: new Date(checkOut), numberOfGuests, userId }
     let updateData = await prisma.booking.update({
       data, where: {
         id: Number(bookingId)
