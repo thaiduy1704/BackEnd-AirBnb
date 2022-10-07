@@ -5,7 +5,7 @@ const authorization = async (req, res, next) => {
   try {
     const isAuthorized = true
     if (isAuthorized) {
-      console.log("authorzication");
+      console.log("authorization");
       next()
     } else {
       failCode(res)

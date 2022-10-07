@@ -17,19 +17,21 @@ const login = async (req, res) => {
     console.log(data);
     if (!data) {
 
-      res.status(500).send("no data")
+      errorCode(res, "No data")
     }
     const checkPassword = comparePassword(password, data.password)
     if (!checkPassword) {
 
-      res.status(500).send("no password")
+      errorCode(res, "Wrong password")
     }
     res.status(200).send("Login successfully")
+
+    
 
 
 
   } catch (error) {
-    res.status(500).send("failcode")
+    failCode(res)
   }
 }
 

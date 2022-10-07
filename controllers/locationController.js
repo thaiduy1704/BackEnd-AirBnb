@@ -86,4 +86,58 @@ const updateLocationById = async (req, res) => {
   }
 }
 
-export { getAllLocations, getLocationById, deleteLocation, createLocation, updateLocationById }
+const uploadImageLocation = async (req, res) => {
+
+  try {
+    const { filename } = req.file
+    const { id } = req.params
+    let getData = await prisma.location.findFirst({
+      where: {
+        id: id
+      }
+    })
+
+    let object = { ...getData, image: `/public/img/${filename}` };
+    await prisma.location.update({
+      object, where: {
+        id: id
+      }
+    })
+    if (getData) {
+      successCode(res, filename)
+    } else {
+      errorCode(res, "No upload")
+    }
+
+
+  } catch (error) {
+    failCode(res)
+
+  }
+}
+const getLocationPagination = async (req, res) => {
+  try {
+    let { pageIndex, pageSize } = req.params
+
+    let page = Number(pageIndex)
+    if (page === 1) {
+      page = 0
+    }
+
+
+    const data = await prisma.location.findMany({
+      skip: page,
+      take: Number(pageSize)
+    })
+    if (data) {
+      successCode(res, data)
+    } else {
+      errorCode(res, "No Location")
+    }
+  } catch (error) {
+
+    failCode(res)
+  }
+}
+
+export { getAllLocations, getLocationById, deleteLocation, createLocation, updateLocationById, uploadImageLocation, getLocationPagination }
