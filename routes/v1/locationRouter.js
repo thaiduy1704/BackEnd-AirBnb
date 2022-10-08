@@ -6,7 +6,7 @@ import multer from 'multer'
 const locationRouter = express.Router()
 const upload = multer({ storage })
 
-locationRouter.post("/upload/:id", upload.single("image"), uploadImageLocation)
+locationRouter.post("/uploadLocation/:locationId", upload.single("image"), uploadImageLocation)
 
 locationRouter.get("", getAllLocations)
 locationRouter.get("/getLocationPagination/pageIndex=:pageIndex/pageSize=:pageSize", getLocationPagination)

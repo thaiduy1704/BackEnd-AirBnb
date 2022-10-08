@@ -149,5 +149,33 @@ const deleteRoom = async (req, res) => {
     failCode(res)
   }
 }
+const uploadImageRoom = async (req, res) => {
+  try {
 
-export { getAllRooms, getRoomById, getRoomByLocationId, createRoom, updateRoom, deleteRoom, getRoomPagination }
+    const { filename } = req.file
+    const { roomId } = req.params
+    let getData = await prisma.room.findFirst({
+      where: {
+        id: Number(roomId)
+      }
+    })
+
+    let data = { ...getData, image: `/public/img/${filename}` }
+    await prisma.room.update({
+      data, where: {
+        id: Number(roomId)
+      }
+    })
+
+    if (getData) {
+      successCode(res, filename)
+    } else {
+      errorCode(res, "No upload")
+    }
+
+  } catch (error) {
+    failCode(res)
+  }
+}
+
+export { getAllRooms, getRoomById, getRoomByLocationId, createRoom, updateRoom, deleteRoom, getRoomPagination, uploadImageRoom }

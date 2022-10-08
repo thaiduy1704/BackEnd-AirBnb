@@ -137,6 +137,33 @@ const deleteUser = async (req, res) => {
     failCode(res)
   }
 }
+const uploadImageUser = async (req, res) => {
+  try {
 
+    const { filename } = req.file
+    const { userId } = req.params
+    let getData = await prisma.user.findFirst({
+      where: {
+        id: Number(userId)
+      }
+    })
 
-export { getAllUsers, getUserById, getAllUserBySearchName, createUser, updateUserById, deleteUser, getUserPagination }
+    let data = { ...getData, image: `/public/img/${filename}` }
+    await prisma.user.update({
+      data, where: {
+        id: Number(userId)
+      }
+    })
+
+    if (getData) {
+      successCode(res, filename)
+    } else {
+      errorCode(res, "No upload")
+    }
+
+  } catch (error) {
+    failCode(res)
+  }
+}
+
+export { getAllUsers, getUserById, getAllUserBySearchName, createUser, updateUserById, deleteUser, getUserPagination, uploadImageUser }

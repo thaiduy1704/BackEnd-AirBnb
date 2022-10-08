@@ -90,17 +90,17 @@ const uploadImageLocation = async (req, res) => {
 
   try {
     const { filename } = req.file
-    const { id } = req.params
+    const { locationId } = req.params
     let getData = await prisma.location.findFirst({
       where: {
-        id: id
+        id: Number(locationId)
       }
     })
 
-    let object = { ...getData, image: `/public/img/${filename}` };
+    let data = { ...getData, image: `/public/img/${filename}` };
     await prisma.location.update({
-      object, where: {
-        id: id
+      data, where: {
+        id: Number(locationId)
       }
     })
     if (getData) {
@@ -111,6 +111,7 @@ const uploadImageLocation = async (req, res) => {
 
 
   } catch (error) {
+
     failCode(res)
 
   }
