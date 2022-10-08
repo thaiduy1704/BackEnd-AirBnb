@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "a8d0c774-2c45-464c-9696-897f2c0d18e9",
+		"name": "Room",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16909713"
+	},
+	"item": [
+		{
+			"name": "getAllRooms",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/room",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"room"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRoomById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/room/1",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"room",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRoomByLocaitonId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/room/getRoomByLocationId/1",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"room",
+						"getRoomByLocationId",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRoomPagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/room//getRoomPagination/pageIndex=1/pageSize=2",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"room",
+						"",
+						"getRoomPagination",
+						"pageIndex=1",
+						"pageSize=2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createRoom",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"EQWEDASD\",\r\n    \"numberOfGuests\": 2,\r\n    \"bedroom\": 1,\r\n    \"bed\": 1,\r\n    \"bathroom\": 1,\r\n    \"description\": \"Không gian riêng để làm việc\\r\\nMột khu vực chung có Wi-fi, phù hợp để làm việc.\\r\\nTự nhận phòng\\r\\nTự nhận phòng bằng khóa thông minh.\",\r\n    \"price\": 21,\r\n    \"washer\": true,\r\n    \"iron\": true,\r\n    \"television\": true,\r\n    \"airConditioner\": true,\r\n    \"wifi\": true,\r\n    \"kitchen\": true,\r\n    \"garage\": false,\r\n    \"pool\": false,\r\n    \"locationId\": 6,\r\n    \"image\": \"https://airbnbnew.cybersoft.edu.vn/images/phong2.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/room",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"room"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateRoom",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"STUDIO MỚI NETFLIX MIỄN PHÍ/ĐỖ XE MIỄN PHÍ\",\r\n    \"numberOfGuests\": 5,\r\n    \"bedroom\": 1,\r\n    \"bed\": 1,\r\n    \"bathroom\": 1,\r\n    \"description\": \"Không gian riêng để làm việc\\r\\nMột khu vực chung có Wi-fi, phù hợp để làm việc.\\r\\nTự nhận phòng\\r\\nTự nhận phòng bằng \",\r\n    \"price\": 21,\r\n    \"washer\": true,\r\n    \"iron\": true,\r\n    \"television\": true,\r\n    \"airConditioner\": true,\r\n    \"wifi\": true,\r\n    \"kitchen\": true,\r\n    \"garage\": false,\r\n    \"pool\": false,\r\n    \"locationId\": 1,\r\n    \"image\": \"https://airbnbnew.cybersoft.edu.vn/images/phong2.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/room/9",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"room",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteRoom",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/room/12",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"room",
+						"12"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
