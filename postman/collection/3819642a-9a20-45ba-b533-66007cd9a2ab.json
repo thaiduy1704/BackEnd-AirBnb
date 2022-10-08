@@ -1,0 +1,1 @@
+{"info":{"_postman_id":"3819642a-9a20-45ba-b533-66007cd9a2ab","name":"Daily Plan DTOs","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},"item":[{"name":"New Request","id":"6052eb8c-7b0b-4bd6-ad5a-188d0e7df734","protocolProfileBehavior":{"disableBodyPruning":true},"request":{"method":"GET","header":[]},"response":[]}]}
