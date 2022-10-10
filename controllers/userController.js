@@ -162,6 +162,7 @@ const uploadImageUser = async (req, res) => {
     }
 
   } catch (error) {
+    console.log(error);
     failCode(res)
   }
 }
