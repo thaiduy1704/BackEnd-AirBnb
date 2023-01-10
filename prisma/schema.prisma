@@ -7,44 +7,44 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Booking {
+model booking {
   id             Int      @id @default(autoincrement())
   roomId         Int
   checkIn        DateTime @db.DateTime(0)
   checkOut       DateTime @db.DateTime(0)
   numberOfGuests Int
   userId         Int
-  Room           Room     @relation(fields: [roomId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "booking_roomid_foreign")
-  User           User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "booking_userid_foreign")
+  room           room     @relation(fields: [roomId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "booking_roomid_foreign")
+  user           user     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "booking_userid_foreign")
 
   @@index([roomId], map: "booking_roomid_foreign")
   @@index([userId], map: "booking_userid_foreign")
 }
 
-model Comment {
+model comment {
   id          Int      @id @default(autoincrement())
   roomId      Int
   userId      Int
-  date        DateTime @db.Date
+  date        DateTime @db.DateTime(0)
   description String   @db.VarChar(255)
   ratting     Int
-  Room        Room     @relation(fields: [roomId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "comment_roomid_foreign")
-  User        User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "comment_userid_foreign")
+  room        room     @relation(fields: [roomId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "comment_roomid_foreign")
+  user        user     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "comment_userid_foreign")
 
   @@index([roomId], map: "comment_roomid_foreign")
   @@index([userId], map: "comment_userid_foreign")
 }
 
-model Location {
+model location {
   id       Int    @id @default(autoincrement())
   name     String @db.VarChar(255)
   province String @db.VarChar(255)
   country  String @db.VarChar(255)
   image    String @db.VarChar(255)
-  Room     Room[]
+  room     room[]
 }
 
-model Room {
+model room {
   id             Int       @id @default(autoincrement())
   name           String    @db.VarChar(255)
   numberOfGuests Int
@@ -63,14 +63,14 @@ model Room {
   image          String    @db.VarChar(255)
   price          Int
   locationId     Int
-  Location       Location  @relation(fields: [locationId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "room_locationid_foreign")
-  Booking        Booking[]
-  Comment        Comment[]
+  booking        booking[]
+  comment        comment[]
+  location       location  @relation(fields: [locationId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "room_locationid_foreign")
 
   @@index([locationId], map: "room_locationid_foreign")
 }
 
-model User {
+model user {
   id       Int       @id @default(autoincrement())
   name     String    @db.VarChar(255)
   password String    @db.VarChar(255)
@@ -79,6 +79,6 @@ model User {
   birthday String    @db.VarChar(255)
   gender   String    @db.VarChar(255)
   role     String    @db.VarChar(255)
-  Booking  Booking[]
-  Comment  Comment[]
+  booking  booking[]
+  comment  comment[]
 }

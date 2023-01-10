@@ -136,6 +136,7 @@ const deleteUser = async (req, res) => {
   } catch (error) {
     failCode(res)
   }
+ 
 }
 const uploadImageUser = async (req, res) => {
   try {
